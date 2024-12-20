@@ -1,20 +1,30 @@
 <script setup>
+import { ref } from 'vue'
+
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import Calendar from './components/Calendar.vue'
+
+// sample events data 
+const events = ref([
+  { title: 'Event 1', date: '2024-12-22' },
+  { title: 'Event 2', date: '2024-12-25' },
+  { title: 'Event 3', date: '2024-12-30' },
+]);
 </script>
 
 <template>
   <header>
     
-
     <div class="wrapper">
       <HelloWorld msg="Digital Nomads Thailand Calendar" />
     </div>
   </header>
 
   <main>
-    <Calendar />
+    <Calendar 
+    :events="events"
+    />
   </main>
 </template>
 
