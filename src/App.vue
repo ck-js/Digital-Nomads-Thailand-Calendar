@@ -7,7 +7,8 @@ import Calendar from './components/Calendar.vue'
 
 // sample events data 
 const events = ref([
-  { title: 'Event 1', date: '2024-12-22' },
+  { title: 'Event 1', date: '2024-12-02' },
+  { title: 'Event 1', date: '2024-12-02' },
   { title: 'Event 2', date: '2024-12-25' },
   { title: 'Event 3', date: '2024-12-30' },
 ]);
