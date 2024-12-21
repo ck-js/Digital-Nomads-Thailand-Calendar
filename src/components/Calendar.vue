@@ -13,12 +13,19 @@ const currentMonth = ref(dayjs().format('MMMM'));
 const currentYear = ref(dayjs().format('YYYY'));
 const dayNameItems = ref(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
 
+const preGridItems = computed(() => {
+// get the first day of the month name
+const january = dayjs().month(0).format('MMMM');
+const firstDayOfMonth = dayjs().date(1).day() +2;
+return Array.from({ length: firstDayOfMonth }, (_, i) => ({ }));
+
+})
+
 
 // const gridItems = ref(Array.from({ length: 35 }, (_, i) => ({ id: i + 1 })));
 const gridItems = computed(() => {
   const daysInMonth = dayjs().daysInMonth();
-  // get the first day of the month name
-    const firstDayOfMonth = dayjs().date(1).day() +1;
+  
     
   return Array.from({ length: daysInMonth }, (_, i) => {
     const date = dayjs().date(i + 1).format('YYYY-MM-DD');
@@ -46,6 +53,10 @@ const gridItems = computed(() => {
 </div>
 </div>
 <div class="grid-container">
+<div v-for="item in preGridItems"
+class="grid-item">
+    <span>{{ item.id }}</span>
+</div>
     <div v-for="item in gridItems"
     :key="item.id"
     class="grid-item">
@@ -70,7 +81,8 @@ const gridItems = computed(() => {
     gap: 1rem;
 }
 .grid-item {
-  padding: 10px;
+  width: 100px;
+  height: 100px;
 }
 .event-green {
 background-color: hsla(160, 100%, 37%, 1);
