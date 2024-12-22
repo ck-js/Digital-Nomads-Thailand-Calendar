@@ -15,7 +15,6 @@ const dayNameItems = ref(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
 
 const preGridItems = computed(() => {
 // get the first day of the month name
-const january = dayjs().month(0).format('MMMM');
 const firstDayOfMonth = dayjs().date(1).day() +2;
 return Array.from({ length: firstDayOfMonth }, (_, i) => ({ }));
 
@@ -33,11 +32,12 @@ const gridItems = computed(() => {
     return {
       id: i + 1,
       date,
-      title: event ? event.title : '',
+      // title: event ? event.title : '',
+      events: event ? [{title: event.title}] : ''
     };
   });
 });
-// console.log(gridItems.value);
+console.log(gridItems.value);
 
 </script>
 <template>

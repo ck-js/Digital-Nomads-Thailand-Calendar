@@ -95,3 +95,97 @@ const gridItems = computed(() => {
   border-radius: 3px;
 }
 </style>
+
+
+
+
+
+
+<script setup>
+import { ref, computed } from 'vue';
+import dayjs from 'dayjs';
+
+// Define props
+const props = defineProps({
+  events: {
+    type: Array,
+    required: true
+  }
+});
+
+const today = ref(dayjs().date());
+const currentMonth = ref(dayjs().format('MMMM'));
+const currentYear = ref(dayjs().format('YYYY'));
+
+// Calculate the first day of the month and its day of the week
+const firstDayOfMonth = dayjs().startOf('month');
+const firstDayOfWeek = firstDayOfMonth.day(); // 0 (Sunday) to 6 (Saturday)
+
+// Create an array to represent the grid items
+const gridItems = computed(() => {
+  const daysInMonth = dayjs().daysInMonth();
+  const items = [];
+
+  // Add empty items for the days before the first day of the month
+  for (let i = 0; i < firstDayOfWeek; i++) {
+    items.push({ id: null, date: null, title: '' });
+  }
+
+  // Add items for each day of the month
+  for (let i = 0; i < daysInMonth; i++) {
+    const date = firstDayOfMonth.date(i + 1).format('YYYY-MM-DD');
+    const event = props.events.find(event => event.date === date);
+    items.push({
+      id: i + 1,
+      date,
+      title: event ? event.title : ''
+    });
+  }
+
+  return items;
+});
+</script>
+
+<template>
+  <h1>{{ today }} {{ currentMonth }}
+    <span>{{ currentYear }}</span>
+  </h1>
+
+  <div class="day-name-container">
+    <div v-for="dayName in dayNameItems" :key="dayName">
+      {{ dayName }}
+    </div>
+  </div>
+
+  <div class="grid-container">
+    <div v-for="item in gridItems" :key="item.id || 'empty'" class="grid-item" :class="{ today: item.id === today }">
+      <span :style="item.id === 15 ? { color: 'red', fontWeight: 'bold' } : {}">{{ item.id }}</span>
+      <div v-if="item.title" class="event-green">{{ item.title }}</div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 columns for a week */
+  gap: 10px;
+}
+
+.grid-item {
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
+}
+
+.today {
+  background-color: yellow; /* Highlight today's date */
+}
+
+.event-green {
+  background-color: green;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+}
+</style>
