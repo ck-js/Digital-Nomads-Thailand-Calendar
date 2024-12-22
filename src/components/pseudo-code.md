@@ -10,6 +10,11 @@ reactive references
 // the proposed solution is to add empty objects to our gridItems array.
 // also think we should seperate the concerns between the fixed calendar items such as start day of the month and the date span item
 // conditionally render the today class to indicate round red background 
+// now events render dynamically with the events property of the gridItems array that is an array of objects 
+// however it does not add more than 1 event to the same date
+// try to implement a solution
+
+
 
 <script setup>
 import { ref, computed } from 'vue';

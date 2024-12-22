@@ -29,6 +29,7 @@ const gridItems = computed(() => {
   return Array.from({ length: daysInMonth }, (_, i) => {
     const date = dayjs().date(i + 1).format('YYYY-MM-DD');
     const event = props.events.find(event => event.date === date);
+    
     return {
       id: i + 1,
       date,
@@ -65,9 +66,17 @@ class="grid-item">
             borderRadius: '50%'
         } : {}"
         >{{ item.id }}</span>
-        <div
-        v-if="item.title" 
-        class="event-green">{{ item.title }}</div>
+        
+<div
+v-for="event in item.events"
+:key="event.title"
+class="event-green">
+{{ event.title }}
+</div>
+
+
+
+
 </div>
 
             
