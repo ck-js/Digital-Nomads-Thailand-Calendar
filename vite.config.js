@@ -9,7 +9,9 @@ export default defineConfig({
   plugins: [
     vue(),
     vueDevTools(),
+      
   ],
+  base: '/Digital-Nomads-Thailand-Calendar/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
