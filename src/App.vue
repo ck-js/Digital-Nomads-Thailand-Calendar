@@ -7,11 +7,11 @@ import Calendar from './components/Calendar.vue'
 
 // sample events data 
 const events = ref([
-{ title: 'Event 1', date: '2024-12-01' },
-  { title: 'Event 2', date: '2024-12-01' },
+{ title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-02' },
+  { title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-02' },
   
-  { title: 'Event 2', date: '2024-12-25' },
-  { title: 'Event 3', date: '2024-12-30' },
+  { title: 'BDN Drinks + Party', date: '2024-12-25' },
+  { title: 'BDN Drinks + Party', date: '2024-12-30' },
 ]);
 </script>
 

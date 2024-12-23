@@ -7,6 +7,8 @@ const props = defineProps({
 });
 import {ref, computed} from 'vue'
 import dayjs  from 'dayjs';
+import EventItem from './EventItem.vue'
+
 
 const today = ref(dayjs().format('DD'));
 const currentMonth = ref(dayjs().format('MMMM'));
@@ -20,7 +22,6 @@ return Array.from({ length: firstDayOfMonth }, (_, i) => ({ }));
 
 })
 
-
 // const gridItems = ref(Array.from({ length: 35 }, (_, i) => ({ id: i + 1 })));
 const gridItems = computed(() => {
   const daysInMonth = dayjs().daysInMonth();
@@ -28,13 +29,18 @@ const gridItems = computed(() => {
     
   return Array.from({ length: daysInMonth }, (_, i) => {
     const date = dayjs().date(i + 1).format('YYYY-MM-DD');
-    const event = props.events.find(event => event.date === date);
+    const dayEvents = props.events.filter(event =>
+      event.date === date
+    )
+    // const event = props.events.find(event => event.date === date);
+    
     
     return {
       id: i + 1,
       date,
       // title: event ? event.title : '',
-      events: event ? [{title: event.title}] : ''
+      // events: event ? [{title: event.title}] : ''
+      events: dayEvents
     };
   });
 });
@@ -63,17 +69,20 @@ class="grid-item">
     class="grid-item">
         <span
         :style="Number(item.id) === Number(today) ? {backgroundColor: 'red',
-            borderRadius: '50%'
+            borderRadius: '50%', padding: '5px'
         } : {}"
         >{{ item.id }}</span>
         
-<div
+<!-- <div
 v-for="event in item.events"
 :key="event.title"
 class="event-green">
 {{ event.title }}
-</div>
-
+</div> -->
+<EventItem 
+v-for="event in item.events"
+:key="event.title"
+:event="event"/>
 
 
 
