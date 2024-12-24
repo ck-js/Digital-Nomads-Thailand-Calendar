@@ -112,5 +112,23 @@ background-color: hsla(160, 100%, 37%, 1);
 .event-green:hover {
     cursor: pointer;
 }
- 
+
+@media (max-width: 768px) {
+    .grid-container{
+        display: flex;
+    flex-direction: row;    
+    flex-wrap: nowrap;
+overflow-x: scroll;        
+height: 100vh;
+    }
+    
+    
+    .grid-item {
+      flex: 0 0 150px;
+      height: 100vh;
+        
+    }
+}
+
+
 </style>
