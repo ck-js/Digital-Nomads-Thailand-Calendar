@@ -5,7 +5,7 @@ const props = defineProps({
         required: true,
     },
 });
-import {ref, computed} from 'vue'
+import {ref, computed, onMounted, onUnmounted} from 'vue'
 import dayjs  from 'dayjs';
 import EventItem from './EventItem.vue'
 
@@ -46,6 +46,21 @@ const gridItems = computed(() => {
 });
 console.log(gridItems.value);
 
+const isWideScreen = ref(window.innerWidth > 768)
+
+const handleResize = () => {
+    isWideScreen.value = window.innerWidth > 768;
+    // alert(isWideScreen.value)
+}
+onMounted(() => {
+window.addEventListener('resize', handleResize);
+})
+
+onUnmounted(() => {
+window.removeEventListener('resize', handleResize);
+})
+
+
 </script>
 <template>
 
@@ -54,7 +69,9 @@ console.log(gridItems.value);
     <span>{{ currentYear}}</span>
 </h1>
 
-<div class="day-name-container">
+<div
+v-if="isWideScreen" 
+class="day-name-container">
 <div v-for="dayName in dayNameItems">
     {{ dayName }}
 </div>
@@ -118,7 +135,8 @@ background-color: hsla(160, 100%, 37%, 1);
         display: flex;
     flex-direction: row;    
     flex-wrap: nowrap;
-overflow-x: scroll;        
+overflow-x: auto;  
+scroll-snap-type-x: mandatory;
 height: 100vh;
     }
     
@@ -126,6 +144,7 @@ height: 100vh;
     .grid-item {
       flex: 0 0 150px;
       height: 100vh;
+      scroll-snap-align: start;
         
     }
 }
