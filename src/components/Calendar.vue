@@ -46,6 +46,7 @@ const gridItems = computed(() => {
 });
 console.log(gridItems.value);
 
+// dynamically conditionally render the day name container
 const isWideScreen = ref(window.innerWidth > 768)
 
 const handleResize = () => {
@@ -54,13 +55,27 @@ const handleResize = () => {
 }
 onMounted(() => {
 window.addEventListener('resize', handleResize);
+// scrollToItem(today.value);
+
 })
+
 
 onUnmounted(() => {
 window.removeEventListener('resize', handleResize);
 })
+    
 
+    const gridContainerRef = ref(null);
 
+    const scrollToItem = (itemId) => {
+      const itemToScrollTo = document.getElementById(itemId);
+      if (itemToScrollTo && scrollContainer.value) {
+        const itemPosition = itemToScrollTo.offsetLeft;
+        scrollContainer.value.scrollTo({ left: itemPosition, behavior: 'smooth' });
+      }
+    };
+
+scrollToItem(today.value);
 </script>
 <template>
 
@@ -76,21 +91,27 @@ class="day-name-container">
     {{ dayName }}
 </div>
 </div>
-<div class="grid-container">
+<div class="grid-container"
+ref="gridContainerRef"
+>
 <div v-for="item in preGridItems"
 class="grid-item">
     <span>{{ item.id }}</span>
 </div>
     <div v-for="item in gridItems"
     :key="item.id"
-    class="grid-item">
+    :id="item.id.toString()"
+    class="grid-item"
+    :class="{ today: item.id === today }"
+    
+    >
         <span
         :style="Number(item.id) === Number(today) ? {backgroundColor: 'red',
             borderRadius: '50%', padding: '5px'
         } : {}"
         >{{ item.id }}</span>
         
-<!-- <div
+<div
 v-for="event in item.events"
 :key="event.title"
 class="event-green">
@@ -134,18 +155,22 @@ background-color: hsla(160, 100%, 37%, 1);
     .grid-container{
         display: flex;
     flex-direction: row;    
-    flex-wrap: nowrap;
+    white-space: nowrap;
 overflow-x: auto;  
-scroll-snap-type-x: mandatory;
+/* scroll-snap-type-x: mandatory; */
 height: 100vh;
+width: 100%;
     }
     
     
     .grid-item {
       flex: 0 0 150px;
       height: 100vh;
-      scroll-snap-align: start;
+      /* scroll-snap-align: start; */
         
+    }
+    span {
+        font-size: 2rem;
     }
 }
 
