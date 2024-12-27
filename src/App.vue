@@ -14,14 +14,7 @@ const events = ref([
   { title: 'BDN Drinks + Party', date: '2024-12-30' },
 ]);
 
-window.onload = function() {
-        const itemToScrollTo = document.getElementById('15');
-        if (itemToScrollTo) {
-            const container = document.querySelector('.grid-container');
-            const itemPosition = itemToScrollTo.offsetLeft;
-            container.scrollTo({ left: itemPosition, behavior: 'smooth' });
-        }
-    }
+
 
 
 </script>

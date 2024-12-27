@@ -55,7 +55,7 @@ const handleResize = () => {
 }
 onMounted(() => {
 window.addEventListener('resize', handleResize);
-// scrollToItem(today.value);
+scrollToItem(today.value);
 
 })
 
@@ -69,13 +69,15 @@ window.removeEventListener('resize', handleResize);
 
     const scrollToItem = (itemId) => {
       const itemToScrollTo = document.getElementById(itemId);
-      if (itemToScrollTo && scrollContainer.value) {
-        const itemPosition = itemToScrollTo.offsetLeft;
-        scrollContainer.value.scrollTo({ left: itemPosition, behavior: 'smooth' });
+      if (itemToScrollTo) {
+itemToScrollTo.scrollIntoView({ behavior: 'smooth',
+
+ });
+
       }
     };
 
-scrollToItem(today.value);
+
 </script>
 <template>
 
@@ -100,29 +102,26 @@ class="grid-item">
 </div>
     <div v-for="item in gridItems"
     :key="item.id"
-    :id="item.id.toString()"
+    :id="item.id"
     class="grid-item"
-    :class="{ today: item.id === today }"
-    
     >
         <span
         :style="Number(item.id) === Number(today) ? {backgroundColor: 'red',
             borderRadius: '50%', padding: '5px'
         } : {}"
         >{{ item.id }}</span>
-        
+
+
 <div
 v-for="event in item.events"
 :key="event.title"
 class="event-green">
 {{ event.title }}
-</div> -->
+</div>
 <EventItem 
 v-for="event in item.events"
 :key="event.title"
 :event="event"/>
-
-
 
 </div>
 
