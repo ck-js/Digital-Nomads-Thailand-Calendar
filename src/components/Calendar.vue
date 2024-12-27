@@ -17,11 +17,10 @@ const dayNameItems = ref(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
 
 const preGridItems = computed(() => {
 // get the first day of the month name
-const firstDayOfMonth = dayjs().date(1).day() +2;
+const firstDayOfMonth = dayjs().date(1).day();
 return Array.from({ length: firstDayOfMonth }, (_, i) => ({ }));
 
 })
-
 // const gridItems = ref(Array.from({ length: 35 }, (_, i) => ({ id: i + 1 })));
 const gridItems = computed(() => {
   const daysInMonth = dayjs().daysInMonth();
@@ -82,7 +81,10 @@ itemToScrollTo.scrollIntoView({ behavior: 'smooth',
 <template>
 
             
-<h1>{{today}} {{ currentMonth}}
+<h1>
+    <span style="font-size: 3rem;
+    font-weight: 600">{{today}}</span>
+    {{ currentMonth }}
     <span>{{ currentYear}}</span>
 </h1>
 
@@ -112,12 +114,6 @@ class="grid-item">
         >{{ item.id }}</span>
 
 
-<div
-v-for="event in item.events"
-:key="event.title"
-class="event-green">
-{{ event.title }}
-</div>
 <EventItem 
 v-for="event in item.events"
 :key="event.title"
@@ -135,20 +131,17 @@ v-for="event in item.events"
     grid-template-columns: repeat(7, 1fr);
     gap: 1rem;
 }
+.day-name-container {
+margin: 15px 0;
+
+
+}
 .grid-item {
   width: 100px;
   height: 100px;
 }
-.event-green {
-background-color: hsla(160, 100%, 37%, 1);
-  color: black;
-  height: 20%;
-  
-  
-}
-.event-green:hover {
-    cursor: pointer;
-}
+
+
 
 @media (max-width: 768px) {
     .grid-container{

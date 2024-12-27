@@ -1,5 +1,5 @@
 <template>
-  <div class="event-green">
+  <div class="event-item green">
     <h6>{{ event.title }}</h6>
   </div>
 </template>
@@ -14,18 +14,23 @@ const props = defineProps({
 </script>
 
 <style scoped>
+.event-item {
+  color: black;
+  height: 20%;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 3px;
 
+}
 h6 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.event-green {
+.green {
   background-color: hsla(160, 100%, 37%, 1);
-  color: black;
-  height: 20%;
-  margin-top: 5px;
+  
 }
 
 .event-green:hover {

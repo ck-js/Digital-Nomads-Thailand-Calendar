@@ -4,14 +4,25 @@ import { ref } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import Calendar from './components/Calendar.vue'
+import EventModal from './components/EventModal.vue'
 
+const showModal = ref(false)
 // sample events data 
 const events = ref([
 { title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-02' },
-  { title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-02' },
+{ title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-09' },
+{ title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-16' },
+{ title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-23' },
+{ title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-30' },
   
-  { title: 'BDN Drinks + Party', date: '2024-12-25' },
-  { title: 'BDN Drinks + Party', date: '2024-12-30' },
+  
+  { title: 'BDN Meetup & Drinks', date: '2024-12-05' },
+  { title: 'BDN Meetup & Drinks', date: '2024-12-12' },
+  { title: 'BDN Meetup & Drinks', date: '2024-12-19' },
+  { title: 'BDN Meetup & Drinks', date: '2024-12-26' },
+  
+  
+  
 ]);
 
 
@@ -21,8 +32,18 @@ const events = ref([
 
 <template>
   <header>
+
+    <button id="show-modal" @click="showModal = true">Show Modal</button>
+
+    <Teleport to="body">
+      <EventModal 
+      :event="events[0]"
+      :show="showModal"
+
+      />
+    </Teleport>
     
-    <div class="wrapper">
+        <div class="wrapper">
       <HelloWorld msg="Digital Nomads Thailand Calendar" />
     </div>
   </header>

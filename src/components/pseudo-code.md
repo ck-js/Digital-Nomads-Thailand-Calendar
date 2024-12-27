@@ -16,74 +16,8 @@ reactive references
 // implement mobile screen size solution 
 // we want to conditionally render the day name element depending on the screen width i.e. only render to dom when screen width is larger than 768px
 // in mobile version we want to place todays grid item block as the start grid container item so that users can start scroll from current date
+// utilized the scroll into view method and make sure to assign id attribute to the relevcant item dynamically using v-bind directive 
+// now implement pop up modal when an event is clicked to reveal more details
 
 
 
-
-<template>
-  <div class="calendar-container" ref="calendarContainer">
-    <div
-      v-for="(item, index) in items"
-      :key="index"
-      class="calendar-item"
-      :class="{ today: isToday(item) }"
-    >
-      {{ item }}
-    </div>
-  </div>
-</template>
-
-<script>
-import { ref, onMounted } from 'vue';
-
-export default {
-  setup() {
-    const items = ref(Array.from({ length: 30 }, (_, i) => new Date(2023, 11, i + 1).toLocaleDateString())); // Example dates for December 2023
-    const calendarContainer = ref(null);
-
-    const isToday = (date) => {
-      const today = new Date();
-      return new Date(date).toDateString() === today.toDateString();
-    };
-
-    const scrollToToday = () => {
-      const todayIndex = items.value.findIndex(item => isToday(item));
-      if (todayIndex !== -1 && calendarContainer.value) {
-        const itemWidth = calendarContainer.value.children[todayIndex].offsetWidth;
-        const scrollLeft = itemWidth * todayIndex;
-        calendarContainer.value.scrollTo({ left: scrollLeft, behavior: 'smooth' });
-      }
-    };
-
-    onMounted(() => {
-      scrollToToday();
-    });
-
-    return {
-      items,
-      calendarContainer,
-      isToday,
-    };
-  },
-};
-</script>
-
-<style scoped>
-.calendar-container {
-  display: flex;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-
-.calendar-item {
-  min-width: 100px; /* Adjust as needed */
-  padding: 10px;
-  border: 1px solid #ccc;
-  margin: 5px;
-  border-radius: 5px;
-}
-
-.today {
-  background-color: yellow; /* Highlight today's item */
-}
-</style>
