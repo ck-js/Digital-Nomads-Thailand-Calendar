@@ -1,7 +1,7 @@
 <script setup>
 
-import { ref, defineProps } from 'vue'
-
+import { ref } from 'vue'
+import EventModal from './EventModal.vue';
 const props = defineProps({
   event: {
     type: Object,
@@ -19,12 +19,19 @@ const showModal = ref(false)
   <div class="event-item green">
     
     <h6>
-      <button>  
+      <button
+      @click="showModal = true"
+      >  
       {{ event.title }}
     </button>
     </h6>
   
   </div>
+<EventModal
+:event="event"
+:show="showModal"
+@close="showModal = false"
+/>  
   
 
 </template>

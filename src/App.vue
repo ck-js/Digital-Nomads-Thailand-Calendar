@@ -7,10 +7,17 @@ import TheWelcome from './components/TheWelcome.vue'
 import Calendar from './components/Calendar.vue'
 import EventModal from './components/EventModal.vue'
 
-const showModal = ref(false)
+
 // sample events data 
 const events = ref([
-{ title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-02' },
+{ title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-02',
+  description: `🔊 📣
+We collectively co-work from 8AM - 2PM in the private meeting room which is free to join and participating in the ice bath / sauna session is optional and costs 500THB for a day pass.
+Cant make it at 8am? Dont worry - feel free to join us any time between 8am and 3pm... we're a friendly bunch.
+Mention to the Yellow Lane staff that you’re here for the Digital Nomads Thailand meetup
+  `,
+  link: 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'
+ },
 { title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-09' },
 { title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-16' },
 { title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-23' },
@@ -49,7 +56,7 @@ const events = ref([
   <main>
     <Calendar 
     :events="events",
-    :showModal="showModal"
+    
     />
   </main>
 </template>

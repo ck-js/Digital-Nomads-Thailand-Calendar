@@ -1,10 +1,9 @@
 <script setup>
-import { ref, defineProps } from 'vue'
+import { ref,  } from 'vue'
 // modal contents
 const props = defineProps({
     event: {
         type: Object,
-        
     },
     show: {
         type: Boolean,
@@ -24,12 +23,19 @@ const props = defineProps({
         </div>
 
         <div class="modal-body">
-          <slot name="body">default body</slot>
+          <slot name="body">
+            <p>
+{{ props.event.description }}
+</p>
+
+          </slot>
         </div>
 
         <div class="modal-footer">
           <slot name="footer">
-            default footer
+            <a href="https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?">
+                https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?
+            </a>
             <button
               class="modal-default-button"
               @click="$emit('close')"
@@ -57,14 +63,14 @@ const props = defineProps({
 }
 
 .modal-container {
-  width: 300px;
+  width: 600px;
   margin: auto;
   padding: 20px 30px;
   background-color: black;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
-  border: 3px solid yellow;
+  border: 1px solid yellow;
 }
 
 .modal-header h3 {
