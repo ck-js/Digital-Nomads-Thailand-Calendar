@@ -1,15 +1,19 @@
 <script setup>
+import dntLogo from '../assets/dnt-logo-3.PNG'
 defineProps({
   msg: {
     type: String,
-    required: true,
+    // required: true,
   },
 })
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+    <!-- <h1 class="green">{{ msg }}</h1> -->
+     <img 
+     class="logo"
+     :src="dntLogo" alt="Digital Nomads Thailand Logo" />
     <h3>
       The all-in-one place to discover and connect with
       <a href="https://web.facebook.com/groups/thailanddigitalnomads/?ref=share_group_link&_rdc=1&_rdr" target="_blank" rel="noopener">Digital Nomads</a>
@@ -19,6 +23,16 @@ defineProps({
 </template>
 
 <style scoped>
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+  width: 100%;
+  max-width: 300px;
+
+  
+}
+
+
 h1 {
   font-weight: 500;
   font-size: 2.6rem;

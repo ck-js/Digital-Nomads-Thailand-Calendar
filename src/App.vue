@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
+
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import Calendar from './components/Calendar.vue'
@@ -25,16 +26,12 @@ const events = ref([
   
 ]);
 
-
-
-
 </script>
 
 <template>
   <header>
 
-    <button id="show-modal" @click="showModal = true">Show Modal</button>
-
+    
     <Teleport to="body">
       <EventModal 
       :event="events[0]"
@@ -43,14 +40,16 @@ const events = ref([
       />
     </Teleport>
     
-        <div class="wrapper">
+       <div class="wrapper">
+      
       <HelloWorld msg="Digital Nomads Thailand Calendar" />
     </div>
   </header>
 
   <main>
     <Calendar 
-    :events="events"
+    :events="events",
+    :showModal="showModal"
     />
   </main>
 </template>
