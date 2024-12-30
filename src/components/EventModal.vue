@@ -10,7 +10,7 @@ const props = defineProps({
         required: true,
     }
 })
-
+const emits = defineEmits(['close'])
 </script>
 
 <template>
@@ -34,7 +34,7 @@ const props = defineProps({
         <div class="modal-footer">
           <slot name="footer">
             <a href="https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?">
-                https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?
+                {{ props.event.link }}
             </a>
             <button
               class="modal-default-button"
@@ -50,6 +50,11 @@ const props = defineProps({
 </template>
 
 <style>
+:root {
+    --green-color:  hsla(160, 100%, 37%, 1);
+}
+
+
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -70,7 +75,7 @@ const props = defineProps({
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
 }
 
 .modal-header h3 {
@@ -84,7 +89,15 @@ const props = defineProps({
 
 .modal-default-button {
   float: right;
+  background-color: var(--green-color);
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+
 }
+
 
 /*
  * The following styles are auto-applied to elements with

@@ -18,6 +18,4 @@ reactive references
 // in mobile version we want to place todays grid item block as the start grid container item so that users can start scroll from current date
 // utilized the scroll into view method and make sure to assign id attribute to the relevcant item dynamically using v-bind directive 
 // now implement pop up modal when an event is clicked to reveal more details
-
-
-
+// set key down event handler to Esc and enter key to emit the close event which closes the modal or sets the show ref to false

@@ -43,6 +43,7 @@ button {
   border: none;
   padding: 0;
   width: 100%;
+  height: 100%;
   font: inherit;
   cursor: pointer;
   outline: inherit;
@@ -53,7 +54,7 @@ button {
 
 .event-item {
   color: black;
-  height: 20%;
+  
   margin-top: 5px;
   padding: 5px;
   border-radius: 3px;
@@ -61,6 +62,7 @@ button {
 }
 h6,
 button {
+  height: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

@@ -40,11 +40,7 @@ Mention to the Yellow Lane staff that you’re here for the Digital Nomads Thail
 
     
     <Teleport to="body">
-      <EventModal 
-      :event="events[0]"
-      :show="showModal"
 
-      />
     </Teleport>
     
        <div class="wrapper">
