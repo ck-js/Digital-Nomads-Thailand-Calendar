@@ -19,7 +19,9 @@ Mention to the Yellow Lane staff that you’re here for the Digital Nomads Thail
   link: 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'
  },
 { title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-09' },
-{ title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-16' },
+{ title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-16' 
+  
+},
 { title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-23' },
 { title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-30' },
   
@@ -39,9 +41,7 @@ Mention to the Yellow Lane staff that you’re here for the Digital Nomads Thail
   <header>
 
     
-    <Teleport to="body">
 
-    </Teleport>
     
        <div class="wrapper">
       

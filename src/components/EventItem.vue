@@ -62,7 +62,7 @@ button {
 }
 h6,
 button {
-  height: 100%;
+  
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -76,4 +76,23 @@ button {
 .event-green:hover {
   cursor: pointer;
 }
+@media (max-width: 768px) {
+  button {
+    height: 100px;
+padding-bottom: 80%;
+    
+    
+
+    
+
+
+    
+  }
+}
 </style>
+
+
+
+
+
+
