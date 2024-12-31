@@ -19,3 +19,4 @@ reactive references
 // utilized the scroll into view method and make sure to assign id attribute to the relevcant item dynamically using v-bind directive 
 // now implement pop up modal when an event is clicked to reveal more details
 // set key down event handler to Esc and enter key to emit the close event which closes the modal or sets the show ref to false
+// fix mobile event modal styling 

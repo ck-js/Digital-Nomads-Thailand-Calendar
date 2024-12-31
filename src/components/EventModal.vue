@@ -1,5 +1,8 @@
 <script setup>
-import { ref,  } from 'vue'
+import { ref, watch, 
+  onMounted,
+  onUnmounted,
+ } from 'vue'
 // modal contents
 const props = defineProps({
     event: {
@@ -11,15 +14,54 @@ const props = defineProps({
     }
 })
 const emits = defineEmits(['close'])
+
+const modalRef = ref(null)
+// event handler to listen for escape key enter or touch
+const closeModal = () => {
+    emits('close')
+}
+// watch for the show prop and set focus on the modal when it becomes true
+watch(() => props.show, (newVal) => {
+  if (newVal && modalRef.value) {
+    modalRef.value.focus();
+  }
+});
+
+// Handle keydown events
+const handleKeydown = (event) => {
+  if (event.key === 'Escape' || event.key === 'Enter') {
+    closeModal();
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeydown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeydown);
+});
+
+
 </script>
 
 <template>
 
 <Transition name="modal">
-    <div v-if="show" class="modal-mask">
+    <div v-if="show" class="modal-mask"
+      @click="closeModal"
+      @touchstart="closeModal"
+      ref="modalRef"
+      tabindex="-1"
+      
+    >
       <div class="modal-container">
         <div class="modal-header">
-          <slot name="header">{{ props.event.title }}</slot>
+          <slot name="header">
+            <h2>
+            {{ props.event.title }}
+          </h2>
+        </slot>
         </div>
 
         <div class="modal-body">
@@ -85,6 +127,7 @@ const emits = defineEmits(['close'])
 
 .modal-body {
   margin: 20px 0;
+  
 }
 
 .modal-default-button {
@@ -120,5 +163,13 @@ const emits = defineEmits(['close'])
 .modal-leave-to .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+@media (max-width: 768px) {
+  .modal-container {
+    width: 100%;
+    height: 50vh;
+  }
+  
+
 }
 </style>
