@@ -17,7 +17,7 @@ const emits = defineEmits(['close'])
 
 const modalRef = ref(null)
 // event handler to listen for escape key enter or touch
-const closeModal = () => {
+const closeModal = (e) => {  
     emits('close')
 }
 // watch for the show prop and set focus on the modal when it becomes true
@@ -49,13 +49,17 @@ onUnmounted(() => {
 
 <Transition name="modal">
     <div v-if="show" class="modal-mask"
-      @click="closeModal"
+      @click="closeModal(e)"
       @touchstart="closeModal"
       ref="modalRef"
       tabindex="-1"
       
     >
-      <div class="modal-container">
+      <div class="modal-container"
+      @click.stop
+      @touchstart.stop
+
+        >
         <div class="modal-header">
           <slot name="header">
             <h2>
@@ -135,6 +139,8 @@ onUnmounted(() => {
   background-color: var(--green-color);
   border: none;
   outline: none;
+  width: 100px;
+  height: 50px;
   padding: 5px 10px;
   border-radius: 2px;
   cursor: pointer;
