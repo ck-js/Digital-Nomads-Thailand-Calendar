@@ -16,7 +16,7 @@ const showModal = ref(false)
 
 <template>
   
-  <div class="event-item green">
+  <div :class="['event-item', event.label ? `${event.label}` : '']">
     
     <h6>
       <button
@@ -58,7 +58,7 @@ button {
   margin-top: 5px;
   padding: 5px;
   border-radius: 3px;
-
+cursor: pointer;
 }
 h6,
 button {
@@ -72,10 +72,10 @@ button {
   background-color: hsla(160, 100%, 37%, 1);
   
 }
-
-.event-green:hover {
-  cursor: pointer;
+.turquoise{
+  background-color: turquoise;
 }
+
 @media (max-width: 768px) {
   button {
     height: 100px;

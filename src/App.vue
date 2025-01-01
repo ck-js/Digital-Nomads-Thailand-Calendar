@@ -6,10 +6,27 @@ import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import Calendar from './components/Calendar.vue'
 import EventModal from './components/EventModal.vue'
+import {Event} from './event.js'
+import {Event2} from './Event2.js'
+import {Event3} from './Event3.js'
 
 
 // sample events data 
 const events = ref([
+  new Event('2025-01-06', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
+  new Event('2025-01-13', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
+  new Event('2025-01-20', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
+  new Event('2025-01-27', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
+
+new Event2('2025-01-03', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
+new Event2('2025-01-07', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
+new Event2('2025-01-11', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
+new Event2('2025-01-15', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
+
+new Event3('2025-01-18', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
+new Event3('2025-01-19', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
+
+
 { title: 'Digital Nomads Thailand Co-work + Ice Bath + Sauna', date: '2024-12-02',
   description: `🔊 📣
 We collectively co-work from 8AM - 2PM in the private meeting room which is free to join and participating in the ice bath / sauna session is optional and costs 500THB for a day pass.

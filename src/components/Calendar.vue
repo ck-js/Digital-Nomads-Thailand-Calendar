@@ -11,6 +11,7 @@ import EventItem from './EventItem.vue'
 
 
 const today = ref(dayjs().format('DD'));
+const previousMonth = ref(dayjs().subtract(1, 'month').format('MMMM'));
 const currentMonth = ref(dayjs().format('MMMM'));
 const currentYear = ref(dayjs().format('YYYY'));
 const dayNameItems = ref(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
@@ -118,6 +119,7 @@ class="grid-item">
 v-for="event in item.events"
 :key="event.title"
 :event="event"/>
+
 
 </div>
 
