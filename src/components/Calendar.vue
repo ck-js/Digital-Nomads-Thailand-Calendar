@@ -10,25 +10,36 @@ import dayjs  from 'dayjs';
 import EventItem from './EventItem.vue'
 
 
-const today = ref(dayjs().format('DD'));
-const previousMonth = ref(dayjs().subtract(1, 'month').format('MMMM'));
-const currentMonth = ref(dayjs().format('MMMM'));
-const currentYear = ref(dayjs().format('YYYY'));
+const today = ref(dayjs());
+// const previousMonth = ref(dayjs().subtract(1, 'month').format('MMMM'));
+const currentMonth = ref(dayjs());
+const currentYear = ref(dayjs());
 const dayNameItems = ref(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
+
+// pagination control functions
+const previousMonth = () => {
+    today.value = today.value.subtract(1, 'month');
+    
+}
+const nextMonth = () => {
+  today.value = today.value.add(1, 'month');
+}
+
 
 const preGridItems = computed(() => {
 // get the first day of the month name
-const firstDayOfMonth = dayjs().date(1).day();
+const firstDayOfMonth = today.value.date(1).day();
 return Array.from({ length: firstDayOfMonth }, (_, i) => ({ }));
 
 })
 // const gridItems = ref(Array.from({ length: 35 }, (_, i) => ({ id: i + 1 })));
 const gridItems = computed(() => {
-  const daysInMonth = dayjs().daysInMonth();
+  const daysInMonth = today.value.daysInMonth();
+  
   
     
   return Array.from({ length: daysInMonth }, (_, i) => {
-    const date = dayjs().date(i + 1).format('YYYY-MM-DD');
+    const date = today.value.date(i + 1).format('YYYY-MM-DD');
     const dayEvents = props.events.filter(event =>
       event.date === date
     )
@@ -84,11 +95,23 @@ itemToScrollTo.scrollIntoView({ behavior: 'smooth',
             
 <h1>
     <span style="font-size: 3rem;
-    font-weight: 600">{{today}}</span>
-    {{ currentMonth }}
-    <span>{{ currentYear}}</span>
+    font-weight: 600"
+    >{{today.format('DD')}}</span>{{ today.format('MMMM') }}
+    <span>{{ today.format('YYYY')}}</span>
 </h1>
+<div class="pagination-controls-container">
+    <button
+    @click="previousMonth"
+    >Previous</button>
+    <button
+    @click="currentMonth = dayjs().format('MMMM')"
+    >Current</button>
+    <button
+    @click="nextMonth"
+    >Next</button>
 
+
+</div>
 <div
 v-if="isWideScreen" 
 class="day-name-container">
@@ -101,7 +124,7 @@ ref="gridContainerRef"
 >
 <div v-for="item in preGridItems"
 class="grid-item">
-    <span>{{ item.id }}</span>
+    <span >{{ item.id }}</span>
 </div>
     <div v-for="item in gridItems"
     :key="item.id"
@@ -109,9 +132,11 @@ class="grid-item">
     class="grid-item"
     >
         <span
-        :style="Number(item.id) === Number(today) ? {backgroundColor: 'red',
-            borderRadius: '50%', padding: '5px'
+        :style="Number(item.id) === Number(today) ? {
+                backgroundColor: 'red',
+            borderRadius: '5px', padding: '5px'
         } : {}"
+        
         >{{ item.id }}</span>
 
 
@@ -127,6 +152,11 @@ v-for="event in item.events"
 </div>    
 </template>
 <style scoped>
+:root {
+    --green-color:  hsla(160, 100%, 37%, 1);
+    --dark-green-color: hsla(160, 100%, 27%, 1);
+}
+
 .grid-container,
 .day-name-container {
     display: grid;
@@ -142,7 +172,28 @@ margin: 15px 0;
   width: 100px;
   height: 100px;
 }
+.pagination-controls-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    height: 50px;
+    
 
+}
+.pagination-controls-container button {
+  
+  background-color: var(--dark-green-color);
+  color: white;
+  border: 1px solid var(--green-color);
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-controls-container button:hover {
+  background-color: var(--green-color);
+}
 
 
 @media (max-width: 768px) {

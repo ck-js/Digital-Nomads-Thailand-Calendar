@@ -13,15 +13,22 @@ import {Event3} from './Event3.js'
 
 // sample events data 
 const events = ref([
+new Event('2024-12-02', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
+new Event('2024-12-09', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
+new Event('2024-12-16', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
+new Event('2024-12-23', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
+new Event('2024-12-30', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
+
+
   new Event('2025-01-06', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
   new Event('2025-01-13', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
   new Event('2025-01-20', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
   new Event('2025-01-27', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
 
-new Event2('2025-01-03', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
-new Event2('2025-01-07', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
-new Event2('2025-01-11', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
-new Event2('2025-01-15', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
+new Event2('2025-01-03', 'https://www.facebook.com/events/s/digital-nomads-thailand-meet-u/602226502491127/'),
+new Event2('2025-01-07', 'https://www.facebook.com/events/s/digital-nomads-thailand-meet-u/602226502491127/'),
+new Event2('2025-01-11', 'https://www.facebook.com/events/s/digital-nomads-thailand-meet-u/602226502491127/'),
+new Event2('2025-01-15', 'https://www.facebook.com/events/s/digital-nomads-thailand-meet-u/602226502491127/'),
 
 new Event3('2025-01-18', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
 new Event3('2025-01-19', 'https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?'),
@@ -75,6 +82,9 @@ Mention to the Yellow Lane staff that you’re here for the Digital Nomads Thail
 </template>
 
 <style scoped>
+:root {
+    --green-color:  hsla(160, 100%, 37%, 1);
+}
 header {
   line-height: 1.5;
 }
