@@ -66,7 +66,7 @@ const handleResize = () => {
 }
 onMounted(() => {
 window.addEventListener('resize', handleResize);
-scrollToItem(today.value);
+scrollToItem(today.value.format('DD'));
 
 })
 
@@ -96,7 +96,7 @@ itemToScrollTo.scrollIntoView({ behavior: 'smooth',
 <h1>
     <span style="font-size: 3rem;
     font-weight: 600"
-    >{{today.format('DD')}}</span>{{ today.format('MMMM') }}
+    >{{today.format('DD')}}</span> {{ today.format('MMMM') }}
     <span>{{ today.format('YYYY')}}</span>
 </h1>
 <div class="pagination-controls-container">
@@ -122,7 +122,9 @@ class="day-name-container">
 <div class="grid-container"
 ref="gridContainerRef"
 >
-<div v-for="item in preGridItems"
+<div 
+v-if="isWideScreen"
+v-for="item in preGridItems"
 class="grid-item">
     <span >{{ item.id }}</span>
 </div>
@@ -132,7 +134,7 @@ class="grid-item">
     class="grid-item"
     >
         <span
-        :style="Number(item.id) === Number(today) ? {
+        :style="Number(item.id) === Number(today.format('DD')) ? {
                 backgroundColor: 'red',
             borderRadius: '5px', padding: '5px'
         } : {}"
