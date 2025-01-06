@@ -79,7 +79,7 @@ onUnmounted(() => {
 
         <div class="modal-footer">
           <slot name="footer">
-            <a href="https://facebook.com/events/s/digital-nomads-meetup-bangkok/896696342619397/?">
+            <a :href="props.event.link" >
                 {{ props.event.link }}
             </a>
             <button
@@ -122,10 +122,13 @@ onUnmounted(() => {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
   /* border: 1px solid yellow; */
+  white-space: wrap;
 }
 
-.modal-header h3 {
+.modal-header h2 {
   margin-top: 0;
+  
+  
   
 }
 
@@ -173,9 +176,11 @@ onUnmounted(() => {
 @media (max-width: 768px) {
   .modal-container {
     width: 100%;
-    height: 50vh;
-  }
-  
+    padding: 20px;
 
+  }
 }
+
+
+
 </style>

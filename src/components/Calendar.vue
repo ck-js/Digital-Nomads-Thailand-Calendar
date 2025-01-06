@@ -12,7 +12,7 @@ import EventItem from './EventItem.vue'
 
 const today = ref(dayjs());
 // const previousMonth = ref(dayjs().subtract(1, 'month').format('MMMM'));
-const currentMonth = ref(dayjs());
+// const currentMonth = ref(dayjs());
 const currentYear = ref(dayjs());
 const dayNameItems = ref(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
 
@@ -24,7 +24,10 @@ const previousMonth = () => {
 const nextMonth = () => {
   today.value = today.value.add(1, 'month');
 }
+const currentMonth = () => {
+today.value = dayjs()
 
+}
 
 const preGridItems = computed(() => {
 // get the first day of the month name
@@ -66,7 +69,8 @@ const handleResize = () => {
 }
 onMounted(() => {
 window.addEventListener('resize', handleResize);
-scrollToItem(today.value.format('DD'));
+scrollToItem(today.value.format('D'));
+// alert(today.value.format('D'))
 
 })
 
@@ -104,7 +108,7 @@ itemToScrollTo.scrollIntoView({ behavior: 'smooth',
     @click="previousMonth"
     >Previous</button>
     <button
-    @click="currentMonth = dayjs().format('MMMM')"
+    @click="currentMonth"
     >Current</button>
     <button
     @click="nextMonth"

@@ -25,8 +25,9 @@ reactive references
 // pagination controls now render previous and next months and year according to today ref
 // we now need the grid to reflect the previous and next months and rerender the DOM
 // make previous month to reflect in the Calendar grid item
-
-
+// fix mobile scroll into view bug and conditionally remove the pre grid items from mobile calendar component
+// fix scroll into view bug as well as current month button method call
+// fix event modal in mobile description / body not breaking onto new line for all elements
 
 <script setup>
 // filepath: /Users/ck/Desktop/Code/DNT Calendar/vue-project/src/components/Calendar.vue
