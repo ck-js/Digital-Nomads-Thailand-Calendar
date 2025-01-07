@@ -1,13 +1,13 @@
 export class Event2 {
   constructor(date, link) {
-    this.title = 'Digital Nomads Thailand Chiang Mai Co-work + Local Lunch + Walking TOur';
-    this.description = `🔊 📣
-We collectively co-work from 8AM - 2PM in the private meeting room which is free to join and participating in the ice bath / sauna session is optional and costs 500THB for a day pass.
-Can't make it at 8am? Don't worry - feel free to join us any time between 8am and 3pm... we're a friendly bunch.
-Mention to the Yellow Lane staff that you’re here for the Digital Nomads Thailand meetup
-    `;
+    this.title = 'Digital Nomads Thailand Chiang Mai Co-work + Meet Up';
+    this.description = `Join us for a vibrant gathering of digital nomads! Each session kicks off with casual chit-chat and introductions from 10 AM to 11 AM, followed by collective co-working from 11 AM to 1:30 PM. Enjoy a delicious and affordable local Thai lunch nearby from 1:30 PM to 2 PM, before diving back into focused co-working until 5 PM.
+
+    This meetup is an excellent opportunity for aspiring digital nomads to seek advice and connect with others living the digital lifestyle. Whether you're looking to network or find your quiet zone to work, you'll find a supportive community here. Don't miss this chance to thrive in a creative environment!
+`;
     this.label = 'turquoise'
     this.date = date;
     this.link = link;
   }
 }
+

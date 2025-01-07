@@ -29,6 +29,15 @@ reactive references
 // fix scroll into view bug as well as current month button method call
 // fix event modal in mobile description / body not breaking onto new line for all elements
 
+// time to convert production deployment from gh-pages to 
+cloudflare pages 
+// banging my head against the wall trying to figure out why cloudflare page is blank
+// after many hours of navigating the cloudflare UI we realized that we can utilize the wrangler cli and so we began our journey 
+// after many attempts we realized we need to change the base to our cloudflare url in vite.config.js
+// we also need to depricate the homepage property in package.json
+// we now need to set custom domain so we dont get pages.dev and can access it with our www.dnt.org domain
+// now set up og image
+
 <script setup>
 // filepath: /Users/ck/Desktop/Code/DNT Calendar/vue-project/src/components/Calendar.vue
 import { ref } from 'vue';
