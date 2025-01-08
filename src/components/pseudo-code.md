@@ -37,6 +37,12 @@ cloudflare pages
 // we also need to depricate the homepage property in package.json
 // we now need to set custom domain so we dont get pages.dev and can access it with our www.dnt.org domain
 // now set up og image
+// fix previous current and next pagination controls innerHTML to display the month name 
+// when pagination events are called the DD in the title should be conditionally rendered out
+// the dynamically condition style should also be removed 
+// brainstorm solutions to make horizontal scroll more noticable and user friendly / better experience
+
+
 
 <script setup>
 // filepath: /Users/ck/Desktop/Code/DNT Calendar/vue-project/src/components/Calendar.vue

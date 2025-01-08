@@ -13,6 +13,8 @@ import EventItem from './EventItem.vue'
 const today = ref(dayjs());
 // const previousMonth = ref(dayjs().subtract(1, 'month').format('MMMM'));
 // const currentMonth = ref(dayjs());
+const staticCurrentMonth = dayjs().format('MM')
+
 const currentYear = ref(dayjs());
 const dayNameItems = ref(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
 
@@ -106,13 +108,14 @@ itemToScrollTo.scrollIntoView({ behavior: 'smooth',
 <div class="pagination-controls-container">
     <button
     @click="previousMonth"
-    >Previous</button>
+    >{{ today.subtract(1,'month').format('MMMM') }}</button>
     <button
     @click="currentMonth"
-    >Current</button>
+    >{{ today.format('MMMM') }}
+  </button>
     <button
     @click="nextMonth"
-    >Next</button>
+    >{{ today.add(1, 'month').format('MMMM') }}</button>
 
 
 </div>

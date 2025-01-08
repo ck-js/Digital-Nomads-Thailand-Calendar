@@ -79,7 +79,8 @@ onUnmounted(() => {
 
         <div class="modal-footer">
           <slot name="footer">
-            <a :href="props.event.link" >
+            <a :href="props.event.link" 
+            target="_blank">
                 {{ props.event.link }}
             </a>
             <button

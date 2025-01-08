@@ -11,7 +11,7 @@ export default defineConfig({
     vueDevTools(),
       
   ],
-  base: '/Digital-Nomads-Thailand-Calendar/',
+  base: 'https://dnt-calendar.pages.dev',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

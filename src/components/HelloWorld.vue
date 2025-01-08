@@ -28,6 +28,7 @@ defineProps({
   margin: 0 auto 2rem;
   width: 100%;
   max-width: 300px;
+  
 
   
 }
