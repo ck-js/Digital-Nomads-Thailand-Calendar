@@ -13,6 +13,7 @@ import EventItem from './EventItem.vue'
 const today = ref(dayjs());
 // const previousMonth = ref(dayjs().subtract(1, 'month').format('MMMM'));
 // const currentMonth = ref(dayjs());
+const  isCurrentMonth = ref(today.value.format('MM') === dayjs().format('MM'));
 const staticCurrentMonth = dayjs().format('MM')
 
 const currentYear = ref(dayjs());
@@ -21,6 +22,7 @@ const dayNameItems = ref(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
 // pagination control functions
 const previousMonth = () => {
     today.value = today.value.subtract(1, 'month');
+    
     
 }
 const nextMonth = () => {
@@ -109,10 +111,10 @@ itemToScrollTo.scrollIntoView({ behavior: 'smooth',
     <button
     @click="previousMonth"
     >{{ today.subtract(1,'month').format('MMMM') }}</button>
-    <button
+    <!-- <button
     @click="currentMonth"
     >{{ today.format('MMMM') }}
-  </button>
+  </button> -->
     <button
     @click="nextMonth"
     >{{ today.add(1, 'month').format('MMMM') }}</button>
@@ -141,7 +143,7 @@ class="grid-item">
     class="grid-item"
     >
         <span
-        :style="Number(item.id) === Number(today.format('DD')) ? {
+        :style="Number(item.id) === Number(today.format('DD')) && isCurrentMonth ? {
                 backgroundColor: 'red',
             borderRadius: '5px', padding: '5px'
         } : {}"
