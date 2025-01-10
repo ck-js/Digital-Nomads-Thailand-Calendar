@@ -5,18 +5,19 @@ const props = defineProps({
         required: true,
     },
 });
-import {ref, computed, onMounted, onUnmounted} from 'vue'
+import {ref, computed, onMounted, onUnmounted, watch} from 'vue'
 import dayjs  from 'dayjs';
 import EventItem from './EventItem.vue'
-
 
 const today = ref(dayjs());
 // const previousMonth = ref(dayjs().subtract(1, 'month').format('MMMM'));
 // const currentMonth = ref(dayjs());
 const  isCurrentMonth = ref(today.value.format('MM') === dayjs().format('MM'));
+
+const staticToday = dayjs()
 const staticCurrentMonth = dayjs().format('MM')
 
-const currentYear = ref(dayjs());
+// const currentYear = ref(dayjs());
 const dayNameItems = ref(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
 
 // pagination control functions
@@ -43,16 +44,13 @@ return Array.from({ length: firstDayOfMonth }, (_, i) => ({ }));
 const gridItems = computed(() => {
   const daysInMonth = today.value.daysInMonth();
   
-  
-    
   return Array.from({ length: daysInMonth }, (_, i) => {
     const date = today.value.date(i + 1).format('YYYY-MM-DD');
     const dayEvents = props.events.filter(event =>
       event.date === date
     )
     // const event = props.events.find(event => event.date === date);
-    
-    
+      
     return {
       id: i + 1,
       date,
@@ -95,22 +93,36 @@ itemToScrollTo.scrollIntoView({ behavior: 'smooth',
 
       }
     };
+    const getItemStyle = (item) => {
+  return Number(item.id) === Number(today.value.format('DD')) && isCurrentMonth.value ? {
+    backgroundColor: 'red',
+    borderRadius: '5px',
+    padding: '5px'
+  } : {};
+};
 
+    watch(today, (newValue) => {
+      isCurrentMonth.value = newValue.format('MM') === dayjs().format('MM');
+      
+    });
+    
 
 </script>
 <template>
-
-            
+   
 <h1>
     <span style="font-size: 3rem;
     font-weight: 600"
-    >{{today.format('DD')}}</span> {{ today.format('MMMM') }}
-    <span>{{ today.format('YYYY')}}</span>
+    >{{ staticToday.format('DD')}}</span> {{staticToday.format('MMMM')}}
+<span>{{staticToday.format('YY')}}</span>
 </h1>
 <div class="pagination-controls-container">
     <button
     @click="previousMonth"
     >{{ today.subtract(1,'month').format('MMMM') }}</button>
+    <h2>
+        {{ today.format('MMMM') }}
+    </h2>
     <!-- <button
     @click="currentMonth"
     >{{ today.format('MMMM') }}
@@ -128,6 +140,7 @@ class="day-name-container">
     {{ dayName }}
 </div>
 </div>
+
 <div class="grid-container"
 ref="gridContainerRef"
 >
@@ -141,13 +154,10 @@ class="grid-item">
     :key="item.id"
     :id="item.id"
     class="grid-item"
+    
     >
         <span
-        :style="Number(item.id) === Number(today.format('DD')) && isCurrentMonth ? {
-                backgroundColor: 'red',
-            borderRadius: '5px', padding: '5px'
-        } : {}"
-        
+:style="getItemStyle(item)"
         >{{ item.id }}</span>
 
 
@@ -161,6 +171,9 @@ v-for="event in item.events"
 
             
 </div>    
+
+
+
 </template>
 <style scoped>
 :root {
@@ -173,6 +186,7 @@ v-for="event in item.events"
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 1rem;
+    
 }
 .day-name-container {
 margin: 15px 0;
@@ -213,7 +227,7 @@ margin: 15px 0;
     flex-direction: row;    
     white-space: nowrap;
 overflow-x: auto;  
-/* scroll-snap-type-x: mandatory; */
+scroll-snap-type-x: mandatory;
 height: 100vh;
 width: 100%;
     }
@@ -222,8 +236,12 @@ width: 100%;
     .grid-item {
       flex: 0 0 150px;
       height: 100vh;
-      /* scroll-snap-align: start; */
+      scroll-snap-align: start;
+      border-right: 0.5px solid rgba(255, 255, 255, 0.5);
         
+    }
+    .grid-item:last-child {
+        border-right: none;
     }
     span {
         font-size: 2rem;

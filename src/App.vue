@@ -9,6 +9,7 @@ import EventModal from './components/EventModal.vue'
 import {Event} from './event.js'
 import {Event2} from './Event2.js'
 import {Event3} from './Event3.js'
+import {Event4} from './Event4.js'
 
 
 // sample events data 
@@ -36,9 +37,20 @@ new Event2('2025-01-27', 'https://facebook.com/events/s/digital-nomads-thailand-
 new Event2('2025-01-30', 'https://facebook.com/events/s/digital-nomads-thailand-meet-u/1315984426067144/?'),
 
 
-
+new Event3('2025-01-17', 'https://www.nomadsummit.com'),
 new Event3('2025-01-18', 'https://www.nomadsummit.com'),
 new Event3('2025-01-19', 'https://www.nomadsummit.com'),
+
+new Event4('2025-01-20', 'https://www.nomadsummit.com'),
+new Event4('2025-01-21', 'https://www.nomadsummit.com'),
+new Event4('2025-01-22', 'https://www.nomadsummit.com'),
+new Event4('2025-01-23', 'https://www.nomadsummit.com'),
+new Event4('2025-01-24', 'https://www.nomadsummit.com'),
+new Event4('2025-01-25', 'https://www.nomadsummit.com'),
+new Event4('2025-01-26', 'https://www.nomadsummit.com'),
+
+
+
 
 
 
